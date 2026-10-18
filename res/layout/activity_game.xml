@@ -86,6 +86,59 @@
                 style="@style/ChipButton" />
         </LinearLayout>
 
+
+        <LinearLayout
+            android:id="@+id/maze_amoo_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical"
+            android:padding="18dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="用 Amoo 生成关卡"
+                style="@style/SectionText" />
+
+            <TextView
+                android:id="@+id/amoo_prompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="2dp"
+                android:text="@string/amoo_maze_prompt"
+                android:textColor="@color/text_dim"
+                android:textIsSelectable="true"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/btn_copy_prompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="复制提示词"
+                style="@style/SecondaryButton" />
+
+            <Button
+                android:id="@+id/btn_import_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="从剪贴板导入关卡"
+                style="@style/SecondaryButton" />
+
+            <TextView
+                android:id="@+id/amoo_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/accent"
+                android:textSize="13sp" />
+        </LinearLayout>
+
         <Button
             android:id="@+id/btn_back"
             android:layout_width="match_parent"

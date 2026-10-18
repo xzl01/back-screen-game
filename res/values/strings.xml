@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Back Screen Game</string>
+    <string name="amoo_maze_prompt">请生成一个 17 列 × 23 行的点阵迷宫：\n用 # 表示墙、. 表示通路、o 表示宝珠（4 个）、\nP 表示起点、E 表示出口，只输出迷宫文本，不要解释。</string>
 </resources>

@@ -45,12 +45,6 @@ public final class MainActivity extends Activity {
                 testPattern();
             }
         });
-        findViewById(R.id.btn_import).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                importFromClipboard();
-            }
-        });
         handleImportIntent(getIntent());
     }
 

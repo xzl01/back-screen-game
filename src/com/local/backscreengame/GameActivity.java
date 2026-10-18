@@ -1,6 +1,9 @@
 package com.local.backscreengame;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -26,6 +29,10 @@ public final class GameActivity extends Activity implements TiltController.Liste
     private PowerManager.WakeLock wakeLock;
 
     private TextView statusView;
+    private TextView titleView;
+    private TextView hintView;
+    private View mazeSection;
+    private TextView amooStatus;
     private Button flipXButton;
     private Button flipYButton;
 
@@ -122,10 +129,13 @@ public final class GameActivity extends Activity implements TiltController.Liste
         tilt = new TiltController(this, this);
 
         setContentView(R.layout.activity_game);
-        ((TextView) findViewById(R.id.game_title)).setText(emoji + " " + game.name());
-        ((TextView) findViewById(R.id.game_hint)).setText(game.hint());
+        titleView = findViewById(R.id.game_title);
+        hintView = findViewById(R.id.game_hint);
+        titleView.setText(emoji + " " + game.name());
+        hintView.setText(game.hint());
         statusView = findViewById(R.id.game_status);
         ((Button) findViewById(R.id.btn_action)).setText(actionText);
+        bindMazeSection();
 
         findViewById(R.id.btn_start).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,6 +184,60 @@ public final class GameActivity extends Activity implements TiltController.Liste
         });
 
         updateStatus();
+    }
+
+    /** 迷宫页专属：Amoo 提示词 + 从剪贴板导入关卡。 */
+    private void bindMazeSection() {
+        mazeSection = findViewById(R.id.maze_amoo_section);
+        amooStatus = findViewById(R.id.amoo_status);
+        if (!(game instanceof MazeGame)) {
+            mazeSection.setVisibility(View.GONE);
+            return;
+        }
+        mazeSection.setVisibility(View.VISIBLE);
+        findViewById(R.id.btn_copy_prompt).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                copyAmooPrompt();
+            }
+        });
+        findViewById(R.id.btn_import_level).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                importLevelFromClipboard();
+            }
+        });
+    }
+
+    private void copyAmooPrompt() {
+        ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        if (cm == null) {
+            amooStatus.setText("剪贴板不可用");
+            return;
+        }
+        cm.setPrimaryClip(ClipData.newPlainText("Amoo 迷宫提示词", getString(R.string.amoo_maze_prompt)));
+        amooStatus.setText("提示词已复制，去 Amoo 粘贴生成，再把生成的迷宫复制回来导入");
+    }
+
+    private void importLevelFromClipboard() {
+        ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = cm == null ? null : cm.getPrimaryClip();
+        if (clip == null || clip.getItemCount() == 0) {
+            amooStatus.setText("剪贴板为空：先用 Amoo 生成迷宫文本并复制");
+            return;
+        }
+        CharSequence text = clip.getItemAt(0).coerceToText(this);
+        try {
+            MazeLevel level = MazeLevel.fromAscii(text == null ? "" : text.toString());
+            stopGame();
+            game = new MazeGame(level, 0, true);
+            hintView.setText(game.hint());
+            createdUptime = 0;   // 绕过进入页面时的防误触保护
+            amooStatus.setText("已导入自定义关卡（宝珠 " + level.orbCount + " 颗）");
+            startGame();
+        } catch (IllegalArgumentException e) {
+            amooStatus.setText("导入失败：" + e.getMessage());
+        }
     }
 
     private void startGame() {

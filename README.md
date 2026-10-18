@@ -29,11 +29,15 @@
 o 表示宝珠（4 个）、P 表示起点、E 表示出口，只输出迷宫文本，不要解释。
 ```
 
-导入方式（任选其一）：
+入口在**迷宫游戏页下方**的「用 Amoo 生成关卡」区域：
 
-1. **剪贴板**：复制 Amoo 输出 → App 主菜单点「导入 Amoo 关卡（从剪贴板）」；
-2. **分享**：把迷宫文本分享到「Back Screen Game」；
-3. **深链接**（自动化/电脑端）：
+1. 点「复制提示词」，把提示词粘贴给 Amoo 生成迷宫；
+2. 复制 Amoo 输出的迷宫文本，回到迷宫页点「从剪贴板导入关卡」即可开始玩。
+
+另外也支持外部入口（自动化/分享场景）：
+
+1. **分享**：把迷宫文本分享到「Back Screen Game」；
+2. **深链接**：
 
 ```sh
 adb shell am start -a android.intent.action.VIEW \
@@ -45,9 +49,9 @@ adb shell am start -a android.intent.action.VIEW \
 
 ## 截图
 
-| 打砖块 | 迷宫 | 桌面图标 |
+| 迷宫页（含 Amoo 关卡区） | 打砖块 | 桌面图标 |
 | --- | --- | --- |
-| ![打砖块](docs/screenshots/screenshot-game.png) | ![迷宫](docs/screenshots/screenshot-maze.png) | ![图标](docs/screenshots/screenshot-icon-launcher.png) |
+| ![迷宫页](docs/screenshots/screenshot-maze-page.png) | ![打砖块](docs/screenshots/screenshot-game.png) | ![图标](docs/screenshots/screenshot-icon-launcher.png) |
 
 更多截图见 [`docs/screenshots/`](docs/screenshots/)。
 
