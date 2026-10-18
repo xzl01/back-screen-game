@@ -1,5 +1,7 @@
 # Back Screen Game
 
+[![Build APK](https://github.com/xzl01/back-screen-game/actions/workflows/build.yml/badge.svg)](https://github.com/xzl01/back-screen-game/actions/workflows/build.yml)
+
 17×23 点阵小游戏合集，为 **STEPX Neo（StepOS / Android 16）** 的背面像素屏打造。
 
 主菜单选游戏，手机背面朝向自己，倾斜手机/按音量键操作；游戏画面实时推送到背屏点阵（391 格亮度帧）。
