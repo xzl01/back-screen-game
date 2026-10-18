@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#FF0B0F14</color>
+    <color name="bg_grad_top">#FF101A22</color>
+    <color name="bg_grad_bottom">#FF070A0D</color>
+    <color name="surface">#FF141C23</color>
+    <color name="surface_2">#FF1B262F</color>
+    <color name="stroke">#FF2A3A45</color>
+    <color name="accent">#FF35E0B0</color>
+    <color name="accent_dim">#FF1E8E72</color>
+    <color name="food">#FFFF9F45</color>
+    <color name="text">#FFEAF2F5</color>
+    <color name="text_dim">#FF93A3AE</color>
+    <color name="on_accent">#FF062018</color>
+    <color name="icon_bg">#FF0B0F14</color>
+    <color name="icon_grid">#FF22312B</color>
+    <color name="icon_snake">#FF35E0B0</color>
+    <color name="icon_head">#FF9CFFE3</color>
+</resources>

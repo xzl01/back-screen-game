@@ -1,0 +1,13 @@
+# build output
+build/
+dist/
+*.apk
+*.aab
+
+# local dev files
+local.properties
+.gradle/
+.idea/
+*.iml
+.DS_Store
+*.log
