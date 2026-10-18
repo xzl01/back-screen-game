@@ -6,7 +6,7 @@
 
 主菜单选游戏，手机背面朝向自己，倾斜手机/按音量键操作；游戏画面实时推送到背屏点阵（391 格亮度帧）。
 
-![主菜单](docs/screenshots/screenshot-menu.png)
+![迷宫页](docs/screenshots/screenshot-maze-page.png)
 
 ## 游戏列表
 
